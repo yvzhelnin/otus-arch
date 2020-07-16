@@ -6,29 +6,29 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: hello-app-cont
+      app: hello-py-app
   template:
     metadata:
       labels:
-        app: hello-app-cont
+        app: hello-py-app
     spec:
       containers:
-      - name: hello-app
-        image: hello-app:v0.6
+      - name: hello-py
+        image: yvzhelnin/hello-app:v0.6
         imagePullPolicy: Always
         ports:
         - name: web
           containerPort: 80
         livenessProbe:
           httpGet:
-            port: 8000
+            port: 80
             path: /
           initialDelaySeconds: 10
           periodSeconds: 5
           timeoutSeconds: 2
         readinessProbe:
           httpGet:
-            port: 8000
+            port: 80
             path: /health
           initialDelaySeconds: 10
           periodSeconds: 5
